@@ -83,7 +83,7 @@ public class HomeFragment
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        StatusBarUtils.enableTranslucentStatusbar(mActivity);
+        StatusBarUtils.enableTranslucentStatusbar(mActivity);  //设置状态栏为透明色
 
         HomeTabFragmentAdapter mainTabFragmentAdapter =
                 new HomeTabFragmentAdapter(getChildFragmentManager(), mContext);
