@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.widget.Toast;
 
 import com.jess.arms.base.BaseActivity;
+import com.jess.arms.base.BaseApplication;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.UiUtils;
 
@@ -21,6 +22,7 @@ import me.jessyan.mvparms.demo.di.module.MainModule;
 import me.jessyan.mvparms.demo.mvp.contract.HomeContract;
 import me.jessyan.mvparms.demo.mvp.presenter.MainPresenter;
 import me.jessyan.mvparms.demo.mvp.ui.adapter.MainTabFragmentAdapter;
+import me.jessyan.mvparms.demo.mvp.ui.fragment.SellerFragment;
 import me.jessyan.mvparms.demo.mvp.ui.widget.NoScrollViewPager;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -57,7 +59,7 @@ public class MainActivity
         MainTabFragmentAdapter mainTabFragmentAdapter
                 = new MainTabFragmentAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(mainTabFragmentAdapter);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(4);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
 
@@ -103,8 +105,14 @@ public class MainActivity
         ButterKnife.bind(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     @OnClick(R.id.floatingActionButton)
     public void onViewClicked() {
-        Toast.makeText(this, "发布了!", Toast.LENGTH_SHORT).show();
+
     }
 }

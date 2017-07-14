@@ -68,7 +68,6 @@ public class HomeFragment
     @BindView(R.id.mObservableScrollView)
     ObservableScrollView mObservableScrollView;
 
-    Unbinder unbinder;
     private int mHeight;
 
     public static HomeFragment newInstance() {
@@ -127,7 +126,6 @@ public class HomeFragment
         mViewPagerBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //指示器居中
         mViewPagerBanner.setIndicatorGravity(BannerConfig.CENTER);
-
         ArrayList<String> images = new ArrayList<>();
         images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
         images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
@@ -144,16 +142,11 @@ public class HomeFragment
             }
         });
 
-        ArrayList<String> titles = new ArrayList<>();
-        titles.add("tab1");
-        titles.add("tab2");
-        titles.add("tab3");
-
         mViewPagerBanner.setImages(images);
         //设置banner动画效果
         mViewPagerBanner.setBannerAnimation(Transformer.Default);
         //设置标题集合（当banner样式有显示title时）
-        mViewPagerBanner.setBannerTitles(titles);
+//        mViewPagerBanner.setBannerTitles(titles);
         //设置自动轮播，默认为true
         mViewPagerBanner.isAutoPlay(true);
         //设置轮播时间
@@ -174,6 +167,7 @@ public class HomeFragment
         switch (view.getId()) {
             case R.id.ll_search:
                 launchActivity(new Intent(mContext, SearchActivity.class));
+                mActivity.finish();
                 break;
             case R.id.iv_scan:
 
@@ -227,14 +221,13 @@ public class HomeFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
     }
 
 }
