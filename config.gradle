@@ -3,7 +3,7 @@ ext {
     android = [
                compileSdkVersion       : 25,
                buildToolsVersion       : "25.0.3",
-               minSdkVersion           : 16,
+               minSdkVersion           : 14,
                targetSdkVersion        : 25,
                versionCode             : 125,
                versionName             : "2.1.0"

@@ -1,7 +1,9 @@
 package me.jessyan.mvparms.demo.mvp.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -14,9 +16,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.UiUtils;
+import com.jess.arms.widget.imageloader.glide.GlideImageConfig;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.loader.ImageLoader;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +64,7 @@ public class HomeFragment
     @BindView(R.id.ViewPager)
     ViewPager mViewPager;
     @BindView(R.id.ViewPager_banner)
-    ViewPager mViewPagerBanner;
+    Banner mViewPagerBanner;
     @BindView(R.id.mObservableScrollView)
     ObservableScrollView mObservableScrollView;
 
@@ -97,39 +107,62 @@ public class HomeFragment
         viewTreeObserver.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
-                mViewPagerBanner.getViewTreeObserver().removeOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                mViewPagerBanner.getViewTreeObserver()
+                        .removeGlobalOnLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
-                    public void onGlobalLayout() {
-                    }
+                    public void onGlobalLayout() {}
                 });
                 mHeight = mViewPagerBanner.getHeight() - llHeaderSearch.getHeight();
                 mObservableScrollView.setOnObservableScrollViewListener(HomeFragment.this);
             }
         });
 
+        initBanner();
     }
 
 
-//    /*轮播*/
-//    private void initBanner() {
-//        //圆形指示器
-//        header.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-//        //指示器居中
-//        header.setIndicatorGravity(BannerConfig.CENTER);
-//        img.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
-//        img.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
-//        img.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
-//        header.setImageLoader(new ImageLoader() {
-//            @Override
-//            public void displayImage(Context context, Object o, ImageView imageView) {
-//                Picasso.with(context)
-//                        .load(url)
-//                        .into(imageView);
-//            }
-//        });
-//        header.setImages(img);
-//        header.start();
-//    }
+    /*轮播*/
+    private void initBanner() {
+        //圆形指示器
+        mViewPagerBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        //指示器居中
+        mViewPagerBanner.setIndicatorGravity(BannerConfig.CENTER);
+
+        ArrayList<String> images = new ArrayList<>();
+        images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
+        images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
+        images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
+        mViewPagerBanner.setImageLoader(new ImageLoader() {
+            @Override
+            public void displayImage(Context context, Object obj, ImageView imageView) {
+                //Glide 加载图片简单用法
+                Glide.with(context).load(obj).into(imageView);
+
+                //用fresco加载图片简单用法，记得要写下面的createImageView方法
+                Uri uri = Uri.parse((String) obj);
+                imageView.setImageURI(uri);
+            }
+        });
+
+        ArrayList<String> titles = new ArrayList<>();
+        titles.add("tab1");
+        titles.add("tab2");
+        titles.add("tab3");
+
+        mViewPagerBanner.setImages(images);
+        //设置banner动画效果
+        mViewPagerBanner.setBannerAnimation(Transformer.Default);
+        //设置标题集合（当banner样式有显示title时）
+        mViewPagerBanner.setBannerTitles(titles);
+        //设置自动轮播，默认为true
+        mViewPagerBanner.isAutoPlay(true);
+        //设置轮播时间
+        mViewPagerBanner.setDelayTime(3000);
+        //设置指示器位置（当banner模式中有指示器时）
+        mViewPagerBanner.setIndicatorGravity(BannerConfig.CENTER);
+        //banner设置方法全部调用完毕时最后调用
+        mViewPagerBanner.start();
+    }
 
     @Override
     public void setData(Object data) {
@@ -147,7 +180,7 @@ public class HomeFragment
                 break;
         }
     }
-    
+
     @Override
     public void onObservableScrollViewListener(int l, int t, int oldl, int oldt) {
         if (t <= 0) {

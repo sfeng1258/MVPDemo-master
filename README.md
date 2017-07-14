@@ -18,5 +18,4 @@
 17. [`LeakCanary`](https://github.com/square/leakcanary)
 
 ## About Me
-* **Email**: <sfeng1258@126.com>  
-* **Home**: <http://sfeng.me>
+* **Email**: <sfeng1258@126.com>

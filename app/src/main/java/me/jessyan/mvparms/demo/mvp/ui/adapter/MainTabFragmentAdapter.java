@@ -27,7 +27,7 @@ public class MainTabFragmentAdapter
     private int Count = 5;
     private static String[] icontxts = {"首页", "手游", "发布", "端游", "我的"};
     private final int[] icons = {R.drawable.selector_home_index, R.drawable.selector_seller_index,
-            R.drawable.selector_msg_index, R.drawable.selector_my_index};
+            R.drawable.selector_msg_index, R.drawable.selector_my_index, R.drawable.selector_my_index};
     private Context mContext;
     private ArrayList<Fragment> fragments;
 
