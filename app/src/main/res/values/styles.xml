@@ -17,4 +17,20 @@
         <item name="android:activityCloseExitAnimation">@anim/translate_center_to_right</item>
     </style>
 
+    <!-- 选择游戏区服界面   下划线样式 -->
+    <style name="line_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.1dp</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <!-- 我的界面里面的图标style -->
+    <style name="my_icon_style">
+        <item name="android:layout_width">@dimen/dp24</item>
+        <item name="android:layout_height">@dimen/dp24</item>
+        <item name="android:layout_marginLeft">@dimen/dp14</item>
+        <item name="android:layout_marginRight">@dimen/dp16</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

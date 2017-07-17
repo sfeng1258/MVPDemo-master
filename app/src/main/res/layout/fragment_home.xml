@@ -19,25 +19,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <com.youth.banner.Banner
                     android:id="@+id/ViewPager_banner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp180"
-                    android:background="@color/gray_normal"
-                    app:layout_scrollFlags="scroll|enterAlways" />
+                    android:background="@color/gray_normal" />
 
                 <include layout="@layout/include_tablayout" />
+
+                <TextView style="@style/line_style" />
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/mTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp05"
                     android:background="@color/white"
-                    app:layout_scrollFlags="scroll|enterAlways"
                     app:tabBackground="@drawable/selector_bg_white_solid"
                     app:tabIndicatorHeight="0dp"
                     app:tabSelectedTextColor="@color/orange"
@@ -46,9 +46,22 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/ViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
-                    android:background="@color/white"
-                    app:layout_scrollFlags="scroll|enterAlways" />
+                    android:layout_height="400dp"
+                    android:background="@color/white" />
+
+                <TextView style="@style/line_style" />
+
+                <TextView
+                    android:id="@+id/tv_more_games"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/iv_search_bar"
+                    android:drawablePadding="@dimen/dp05"
+                    android:gravity="center"
+                    android:padding="@dimen/dp10"
+                    android:text="更多游戏"
+                    android:textSize="@dimen/px50" />
 
             </LinearLayout>
         </me.jessyan.mvparms.demo.mvp.ui.widget.ObservableScrollView>

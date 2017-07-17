@@ -20,7 +20,6 @@ import com.bumptech.glide.Glide;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.UiUtils;
-import com.jess.arms.widget.imageloader.glide.GlideImageConfig;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -31,7 +30,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.app.utils.StatusBarUtils;
 import me.jessyan.mvparms.demo.di.component.DaggerHomeComponent;
@@ -93,32 +91,70 @@ public class HomeFragment
     @Override
     public void initData(Bundle savedInstanceState) {
         StatusBarUtils.enableTranslucentStatusbar(mActivity);  //设置状态栏为透明色
+        initViewPager();    //关联ViewPager
+        initTitle();        //渐变的标题栏
+        initBanner();       //顶部广告轮播图
+    }
 
-        HomeTabFragmentAdapter mainTabFragmentAdapter =
-                new HomeTabFragmentAdapter(getChildFragmentManager(), mContext);
-        mViewPager.setAdapter(mainTabFragmentAdapter);
-        mViewPager.setOffscreenPageLimit(1);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mTabLayout.getTabAt(0);
+    @Override
+    public void setData(Object data) {
 
+    }
+
+    @OnClick({R.id.ll_search, R.id.iv_scan})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_search:
+                launchActivity(new Intent(mContext, SearchActivity.class));
+                break;
+            case R.id.iv_scan:
+
+                break;
+        }
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    private void initTitle() {
         ViewTreeObserver viewTreeObserver = mViewPagerBanner.getViewTreeObserver();
         viewTreeObserver.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
                 mViewPagerBanner.getViewTreeObserver()
                         .removeGlobalOnLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {}
-                });
+                            @Override
+                            public void onGlobalLayout() {
+                            }
+                        });
                 mHeight = mViewPagerBanner.getHeight() - llHeaderSearch.getHeight();
                 mObservableScrollView.setOnObservableScrollViewListener(HomeFragment.this);
             }
         });
-
-        initBanner();
     }
 
+    private void initViewPager() {
+        HomeTabFragmentAdapter mainTabFragmentAdapter =
+                new HomeTabFragmentAdapter(getChildFragmentManager(), mContext);
+        mViewPager.setAdapter(mainTabFragmentAdapter);
+        mViewPager.setOffscreenPageLimit(1);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = mTabLayout.getTabAt(i);
+            tab.setCustomView(mainTabFragmentAdapter.getCustomView(i));
+        }
+        //设置默认选择位置为第一个
+        mTabLayout.getTabAt(0).getCustomView().setSelected(true);
+
+    }
 
     /*轮播*/
     private void initBanner() {
@@ -133,46 +169,19 @@ public class HomeFragment
         mViewPagerBanner.setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object obj, ImageView imageView) {
-                //Glide 加载图片简单用法
                 Glide.with(context).load(obj).into(imageView);
-
-                //用fresco加载图片简单用法，记得要写下面的createImageView方法
                 Uri uri = Uri.parse((String) obj);
                 imageView.setImageURI(uri);
             }
         });
 
         mViewPagerBanner.setImages(images);
-        //设置banner动画效果
-        mViewPagerBanner.setBannerAnimation(Transformer.Default);
-        //设置标题集合（当banner样式有显示title时）
+        mViewPagerBanner.setBannerAnimation(Transformer.ZoomOut);
 //        mViewPagerBanner.setBannerTitles(titles);
-        //设置自动轮播，默认为true
         mViewPagerBanner.isAutoPlay(true);
-        //设置轮播时间
         mViewPagerBanner.setDelayTime(3000);
-        //设置指示器位置（当banner模式中有指示器时）
         mViewPagerBanner.setIndicatorGravity(BannerConfig.CENTER);
-        //banner设置方法全部调用完毕时最后调用
         mViewPagerBanner.start();
-    }
-
-    @Override
-    public void setData(Object data) {
-
-    }
-
-    @OnClick({R.id.ll_search, R.id.iv_scan})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ll_search:
-                launchActivity(new Intent(mContext, SearchActivity.class));
-                mActivity.finish();
-                break;
-            case R.id.iv_scan:
-
-                break;
-        }
     }
 
     @Override
@@ -182,23 +191,13 @@ public class HomeFragment
             llHeaderSearch.setBackgroundColor(Color.argb(0, 63, 168, 98));
         } else if (t > 0 && t < mHeight) {
             //滑动过程中，渐变
-            float scale = (float) t / mHeight;//算出滑动距离比例
-            float alpha = (255 * scale);//得到透明度
+            float scale = (float) t / mHeight;  //算出滑动距离比例
+            float alpha = (255 * scale);        //得到透明度
             llHeaderSearch.setBackgroundColor(Color.argb((int) alpha, 63, 168, 98));
         } else {
             //过顶部图区域，标题栏定色
             llHeaderSearch.setBackgroundColor(Color.argb(255, 63, 168, 98));
         }
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
     }
 
     @Override

@@ -63,6 +63,11 @@ public class MainActivity
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
 
+        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = mTabLayout.getTabAt(i);
+            tab.setCustomView(mainTabFragmentAdapter.getCustomView(i));
+        }
+
         //设置当前显示的Fragment
         int currentPage = getIntent().getIntExtra(DefaultConstants.CURRENT_PAGE, 0);
         if (currentPage == -1)

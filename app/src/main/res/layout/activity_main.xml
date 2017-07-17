@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +31,7 @@
         android:layout_height="52dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp16"
         app:backgroundTint="@color/black"
         app:borderWidth="0dp"
         app:elevation="0dp"
@@ -43,7 +44,7 @@
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dp19"
+        android:layout_marginBottom="@dimen/dp20"
         android:src="@drawable/ic_info_add"
         app:backgroundTint="@color/orange"
         app:borderWidth="0dp"

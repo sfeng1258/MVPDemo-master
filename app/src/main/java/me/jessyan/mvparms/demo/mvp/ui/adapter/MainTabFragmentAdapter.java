@@ -24,10 +24,12 @@ import me.jessyan.mvparms.demo.mvp.ui.fragment.UserCenterFragment;
 public class MainTabFragmentAdapter
         extends FragmentPagerAdapter {
 
-    private int Count = 5;
     private static String[] icontxts = {"首页", "手游", "发布", "端游", "我的"};
-    private final int[] icons = {R.drawable.selector_home_index, R.drawable.selector_seller_index,
-            R.drawable.selector_msg_index, R.drawable.selector_my_index, R.drawable.selector_my_index};
+    private final int[] icons = {R.drawable.ic_action_gold,
+            R.drawable.ic_action_gold, R.drawable.ic_action_gold,
+            R.drawable.ic_action_gold, R.drawable.ic_action_gold};
+
+    private int Count = 5;
     private Context mContext;
     private ArrayList<Fragment> fragments;
 
@@ -54,16 +56,16 @@ public class MainTabFragmentAdapter
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return icontxts[position];
+        return null;
     }
 
-//    public View getCustomView(int position) {
-//        View view = LayoutInflater.from(mContext).inflate(R.layout.item_main_tab_view, null, false);
-//        TextView icontxt = (TextView) view.findViewById(R.id.icontext);
-//        ImageView icon = (ImageView) view.findViewById(R.id.icon);
-//        icon.setBackgroundResource(icons[position]);
-//        icontxt.setText(icontxts[position]);
-//        return view;
-//    }
+    public View getCustomView(int position) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_main_tab_view, null, false);
+        TextView tvTxt = (TextView) view.findViewById(R.id.tv_txt);
+        ImageView ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
+        ivIcon.setBackgroundResource(icons[position]);
+        tvTxt.setText(icontxts[position]);
+        return view;
+    }
 
 }

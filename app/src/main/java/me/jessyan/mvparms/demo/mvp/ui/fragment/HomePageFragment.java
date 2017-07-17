@@ -3,6 +3,7 @@ package me.jessyan.mvparms.demo.mvp.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,13 @@ public class HomePageFragment
         extends BaseFragment<HomePagePresenter>
         implements HomePageContract.View {
 
+    private final static String TYPE_TAG = "TYPE_TAG";
+
     public static HomePageFragment newInstance(int page) {
         HomePageFragment fragment = new HomePageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(TYPE_TAG, page);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
