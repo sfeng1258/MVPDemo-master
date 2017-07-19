@@ -1,7 +1,12 @@
 package me.jessyan.mvparms.demo.mvp.contract;
 
-import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
+import com.jess.arms.mvp.IView;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import me.jessyan.mvparms.demo.mvp.model.entity.User;
 
 
 public interface HomeContract {
@@ -12,6 +17,6 @@ public interface HomeContract {
 
     //Model层定义接口,外部只需关心model返回的数据,无需关心内部细节,及是否使用缓存
     interface Model extends IModel {
-
+        Observable<List<User>> getFirstPage(String versionNum, int deviceType);
     }
 }

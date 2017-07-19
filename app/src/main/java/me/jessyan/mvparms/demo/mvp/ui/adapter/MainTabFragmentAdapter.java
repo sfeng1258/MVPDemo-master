@@ -39,7 +39,7 @@ public class MainTabFragmentAdapter
         if (fragments == null) this.fragments = new ArrayList<>();
         fragments.add(new HomeFragment().newInstance());
         fragments.add(new SellerFragment().newInstance());
-        fragments.add(new SellerFragment().newInstance());
+        fragments.add(new Fragment());
         fragments.add(new MsgFragment().newInstance());
         fragments.add(new UserCenterFragment().newInstance());
     }

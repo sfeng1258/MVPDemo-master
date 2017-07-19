@@ -1,5 +1,6 @@
 package me.jessyan.mvparms.demo.mvp.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -68,6 +69,9 @@ public class HomeFragment
 
     private int mHeight;
 
+    //后台配置的首页版本号，不一定和app的版本号相同
+    public static final String CURRENT_CONFIG_VERSION = "2.4.0";
+
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
@@ -94,6 +98,8 @@ public class HomeFragment
         initViewPager();    //关联ViewPager
         initTitle();        //渐变的标题栏
         initBanner();       //顶部广告轮播图
+
+        mPresenter.requestFirstPage(CURRENT_CONFIG_VERSION, 1);
     }
 
     @Override
@@ -131,9 +137,7 @@ public class HomeFragment
                 mViewPagerBanner.getViewTreeObserver()
                         .removeGlobalOnLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                             @Override
-                            public void onGlobalLayout() {
-                            }
-                        });
+                            public void onGlobalLayout() {}});
                 mHeight = mViewPagerBanner.getHeight() - llHeaderSearch.getHeight();
                 mObservableScrollView.setOnObservableScrollViewListener(HomeFragment.this);
             }
@@ -153,7 +157,6 @@ public class HomeFragment
         }
         //设置默认选择位置为第一个
         mTabLayout.getTabAt(0).getCustomView().setSelected(true);
-
     }
 
     /*轮播*/
@@ -166,6 +169,7 @@ public class HomeFragment
         images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
         images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
         images.add("http://m.beequick.cn/static/bee/img/m/boot_logo-275a61e3.png");
+
         mViewPagerBanner.setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object obj, ImageView imageView) {
@@ -186,18 +190,14 @@ public class HomeFragment
 
     @Override
     public void onObservableScrollViewListener(int l, int t, int oldl, int oldt) {
-        if (t <= 0) {
-            //顶部图处于最顶部，标题栏透明
-            llHeaderSearch.setBackgroundColor(Color.argb(0, 63, 168, 98));
-        } else if (t > 0 && t < mHeight) {
-            //滑动过程中，渐变
+        if (t <= 0)
+            llHeaderSearch.setBackgroundColor(Color.argb(0, 63, 168, 98));      //顶部图处于最顶部，标题栏透明
+        else if (t > 0 && t < mHeight) {        //滑动过程中，渐变
             float scale = (float) t / mHeight;  //算出滑动距离比例
             float alpha = (255 * scale);        //得到透明度
             llHeaderSearch.setBackgroundColor(Color.argb((int) alpha, 63, 168, 98));
-        } else {
-            //过顶部图区域，标题栏定色
-            llHeaderSearch.setBackgroundColor(Color.argb(255, 63, 168, 98));
-        }
+        } else
+            llHeaderSearch.setBackgroundColor(Color.argb(255, 63, 168, 98));    //过顶部图区域，标题栏定色
     }
 
     @Override
@@ -215,13 +215,8 @@ public class HomeFragment
     @Override
     public void killMyself() {
 
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
+        //finish();
     }
 
     @Override

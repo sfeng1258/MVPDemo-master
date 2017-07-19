@@ -46,8 +46,14 @@
             android:name="me.jessyan.mvparms.demo.app.GlobalConfiguration"
             android:value="ConfigModule" />
 
+        <!--首页-->
+        <activity android:name=".mvp.ui.activity.home.SearchActivity"/>
+        <!--手游-->
+        <!--发布-->
+        <!--端游-->
+        <!--我的-->
+
         <activity android:name=".mvp.ui.activity.MainActivity" />
-        <activity android:name=".mvp.ui.activity.home.SearchActivity"></activity>
     </application>
 
 </manifest>

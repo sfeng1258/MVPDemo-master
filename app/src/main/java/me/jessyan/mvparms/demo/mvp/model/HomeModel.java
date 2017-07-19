@@ -3,14 +3,18 @@ package me.jessyan.mvparms.demo.mvp.model;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 
-import com.jess.arms.di.scope.ActivityScope;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import me.jessyan.mvparms.demo.mvp.contract.HomeContract;
+import me.jessyan.mvparms.demo.mvp.model.api.service.CommonService;
+import me.jessyan.mvparms.demo.mvp.model.entity.User;
 
 
 @ActivityScope
@@ -32,4 +36,11 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
         this.mApplication = null;
     }
 
+    @Override
+    public Observable<List<User>> getFirstPage(String versionNum, int deviceType) {
+        Observable<List<User>> users = mRepositoryManager
+                .obtainRetrofitService(CommonService.class)
+                .getFirstPage(versionNum, deviceType);
+        return users;
+    }
 }

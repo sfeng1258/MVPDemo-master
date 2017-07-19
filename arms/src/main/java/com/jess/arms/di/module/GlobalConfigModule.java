@@ -71,7 +71,8 @@ public class GlobalConfigModule {
     @Singleton
     @Provides
     HttpUrl provideBaseUrl() {
-        return mApiUrl == null ? HttpUrl.parse("https://api.github.com/") : mApiUrl;
+//        return mApiUrl == null ? HttpUrl.parse("https://api.github.com/") : mApiUrl;
+        return mApiUrl == null ? HttpUrl.parse("http://routeapi.5173.com/rest.do") : mApiUrl;
     }
 
 

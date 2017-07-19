@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.app.constant.DefaultConstants;
+import me.jessyan.mvparms.demo.app.utils.StatusBarUtils;
 import me.jessyan.mvparms.demo.di.component.DaggerMainComponent;
 import me.jessyan.mvparms.demo.di.module.MainModule;
 import me.jessyan.mvparms.demo.mvp.contract.HomeContract;
@@ -56,6 +57,7 @@ public class MainActivity
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        StatusBarUtils.enableTranslucentStatusbar(this);  //设置状态栏为透明色
         MainTabFragmentAdapter mainTabFragmentAdapter
                 = new MainTabFragmentAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(mainTabFragmentAdapter);
