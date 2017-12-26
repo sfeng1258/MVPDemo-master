@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/orange"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp49">
+
+        <TextView
+            android:id="@+id/back_tv"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/dp04"
+            android:background="@drawable/selector_back"
+            android:contentDescription="@string/app_name" />
+
+        <LinearLayout
+            android:id="@+id/rl_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="right|center_vertical">
+
+            <TextView
+                android:id="@+id/tv_his"
+                android:layout_width="@dimen/dp48"
+                android:layout_height="@dimen/dp48"
+                android:background="@drawable/his_icon"
+                android:textColor="@color/orange"
+                android:textSize="18dip"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/collect"
+                android:layout_width="@dimen/dp48"
+                android:layout_height="@dimen/dp48"
+                android:background="@drawable/iv_collectno"
+                android:textColor="@color/orange"
+                android:textSize="18dip"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp20"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="16dip"
+                android:visibility="gone" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/delete_"
+                android:background="@drawable/iv_delete_foot"
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp30"
+                android:layout_marginLeft="@dimen/dp04"
+                android:layout_marginRight="@dimen/dp08"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/dp17"
+                android:visibility="gone"
+                 />
+            <TextView
+                android:gravity="center"
+                android:visibility="gone"
+                android:id="@+id/tv_switch_type"
+                android:layout_width="@dimen/dp65"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginLeft="@dimen/dp04"
+                android:layout_marginRight="@dimen/dp08"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px38" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_toRightOf="@+id/back_tv"
+            android:layout_toLeftOf="@id/rl_right"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="left"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px57" />
+    </RelativeLayout>
+</LinearLayout>

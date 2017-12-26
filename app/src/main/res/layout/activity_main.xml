@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <me.jessyan.mvparms.demo.mvp.ui.widget.NoScrollViewPager
+        <com.cn.mvparms.demo.mvp.ui.widget.NoScrollViewPager
             android:id="@+id/ViewPager_banner"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -19,36 +19,9 @@
             android:id="@+id/TabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black_1"
+            android:background="@drawable/side_nav_bar"
             app:tabIndicatorHeight="0dp"
             app:tabSelectedTextColor="@color/orange"
             app:tabTextColor="@color/white" />
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dp16"
-        app:backgroundTint="@color/black"
-        app:borderWidth="0dp"
-        app:elevation="0dp"
-        app:pressedTranslationZ="16dp"
-        app:rippleColor="#33728dff" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dp20"
-        android:src="@drawable/ic_info_add"
-        app:backgroundTint="@color/orange"
-        app:borderWidth="0dp"
-        app:elevation="0dp"
-        app:pressedTranslationZ="16dp"
-        app:rippleColor="#33728dff" />
-
 </RelativeLayout>

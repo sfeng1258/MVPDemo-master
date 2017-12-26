@@ -9,7 +9,7 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
 
-        <me.jessyan.mvparms.demo.mvp.ui.widget.ObservableScrollView
+        <com.cn.mvparms.demo.mvp.ui.widget.ObservableScrollView
             android:id="@+id/mObservableScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,7 +24,7 @@
                 <com.youth.banner.Banner
                     android:id="@+id/ViewPager_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp180"
+                    android:layout_height="@dimen/dp150"
                     android:background="@color/gray_normal" />
 
                 <include layout="@layout/include_tablayout" />
@@ -63,7 +63,7 @@
                     android:textSize="@dimen/px50" />
 
             </LinearLayout>
-        </me.jessyan.mvparms.demo.mvp.ui.widget.ObservableScrollView>
+        </com.cn.mvparms.demo.mvp.ui.widget.ObservableScrollView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 
     <include layout="@layout/include_seach" />

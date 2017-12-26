@@ -20,5 +20,4 @@
         android:textColor="@drawable/selector_text_color_orange_black"
         android:textSize="@dimen/px45"
         tools:text="端游" />
-
 </LinearLayout>

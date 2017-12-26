@@ -3,9 +3,8 @@
     <color name="colorPrimary">#3FA862</color>
     <color name="colorPrimaryDark">#3FA862</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="color_transparent">#00000000</color>
-    <!-- 半透明 -->
-    <color name="per5_transparent">#0c000000</color>
+    <color name="color_transparent">#00000000</color> <!-- 透明 -->
+    <color name="per5_transparent">#0c000000</color> <!-- 半透明 -->
     <color name="TextColorWhite">#FFFFFFFF</color>
     <color name="btncancel">#999999</color>
     <color name="TextNomal">#666666</color>
